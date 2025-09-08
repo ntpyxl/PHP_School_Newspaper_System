@@ -33,7 +33,7 @@ if (!$userObj->isAdmin()) {
     <div class="display-4 text-center">Hello there and welcome to the admin side! <span class="text-success"><?php echo $_SESSION['username']; ?></span>. Here are all the articles</div>
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <form action="core/handleForms.php" method="POST">
+        <form action="../core/handler.php" method="POST">
           <div class="form-group">
             <input type="text" class="form-control mt-4" name="title" placeholder="Input title here">
           </div>
@@ -61,7 +61,7 @@ if (!$userObj->isAdmin()) {
               <small><strong><?php echo $article['username'] ?></strong> - <?php echo $article['created_at']; ?> </small>
               <p><?php echo $article['content']; ?> </p>
 
-              <form action="core/handleForms.php" method="POST">
+              <form action="../core/handler.php" method="POST">
                 <input type="hidden" id="article_id" name="article_id" value="<?php echo $article['article_id']; ?>">
                 <input type="submit" class="btn btn-primary form-control float-right mt-4 mb-4" name="deleteArticleButton" value="delete">
               </form>

@@ -26,7 +26,7 @@
                     <div class="card-header">
                         <h2>Welcome to the admin panel! Login Now!</h2>
                     </div>
-                    <form action="core/handleForms.php" method="POST">
+                    <form action="core/handler.php" method="POST">
                         <div class="card-body">
                             <?php
                             if (isset($_SESSION['message']) && isset($_SESSION['status'])) {

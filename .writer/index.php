@@ -33,7 +33,7 @@ if ($userObj->isAdmin()) {
     <div class="display-4 text-center">Hello there and welcome! <span class="text-success"><?php echo $_SESSION['username']; ?></span>. Here are all the articles</div>
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <form action="core/handleForms.php" method="POST">
+        <form action="../core/handler.php" method="POST">
           <div class="form-group">
             <input type="text" class="form-control mt-4" name="title" placeholder="Input title here">
           </div>

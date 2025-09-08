@@ -38,7 +38,7 @@
                     <div class="card-header">
                         <h2>Welcome to admin side! Register Now as admin!</h2>
                     </div>
-                    <form action="core/handleForms.php" method="POST">
+                    <form action="core/handler.php" method="POST">
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Username</label>

@@ -32,7 +32,7 @@ if (!$userObj->isAdmin()) {
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="core/handleForms.php" method="POST">
+                <form action="core/handler.php" method="POST">
                     <div class="form-group">
                         <input type="text" class="form-control mt-4" name="title" placeholder="Input title here">
                     </div>
@@ -70,7 +70,7 @@ if (!$userObj->isAdmin()) {
                             </form>
                             <div class="updateArticleForm d-none">
                                 <h4>Edit the article</h4>
-                                <form action="core/handleForms.php" method="POST">
+                                <form action="core/handler.php" method="POST">
                                     <div class="form-group mt-4">
                                         <input type="text" class="form-control" name="title" value="<?php echo $article['title']; ?>">
                                     </div>
@@ -102,7 +102,7 @@ if (!$userObj->isAdmin()) {
         //   if (confirm("Are you sure you want to delete this article?")) {
         //     $.ajax({
         //       type:"POST",
-        //       url: "core/handleForms.php",
+        //       url: "core/handler.php",
         //       data:formData,
         //       success: function (data) {
         //         if (data) {
@@ -127,7 +127,7 @@ if (!$userObj->isAdmin()) {
             if (formData.article_id != "" && formData.status != "") {
                 $.ajax({
                     type: "POST",
-                    url: "core/handleForms.php",
+                    url: "core/handler.php",
                     data: formData,
                     success: function(data) {
                         if (data) {
