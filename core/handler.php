@@ -36,23 +36,22 @@ if (isset($_POST['insertNewUserBtn'])) {
         header("Location: ../register.php");
     }
 }
-
+var_dump($_POST);
 if (isset($_POST['loginUserBtn'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    if (!empty($email) && !empty($password)) {
-
-        if ($userObj->loginUser($email, $password)) {
-            header("Location: ../index.php");
-        } else {
-            $_SESSION['message'] = "Username/password invalid";
-            $_SESSION['status'] = "400";
-            header("Location: ../login.php");
-        }
-    } else {
+    if (empty($email) || empty($password)) {
         $_SESSION['message'] = "Please make sure there are no empty input fields";
         $_SESSION['status'] = '400';
+        header("Location: ../login.php");
+    }
+
+    if ($userObj->loginUser($email, $password)) {
+        header("Location: ../dashboard/");
+    } else {
+        $_SESSION['message'] = "Username/password invalid";
+        $_SESSION['status'] = "400";
         header("Location: ../login.php");
     }
 }

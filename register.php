@@ -2,65 +2,76 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>School Publication - Register</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <style>
-        body {
-            font-family: "Arial";
-            background-image: url("https://img.freepik.com/premium-photo/pastel-tone-purple-pink-blue-gradient-defocused-abstract-photo-smooth-lines_49683-4702.jpg?w=1380");
-        }
-    </style>
-    <title>Hello, world!</title>
+    <link href="core/styles.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 p-5">
-                <div class="card shadow">
-                    <?php
-                    if (isset($_SESSION['message']) && isset($_SESSION['status'])) {
+<body class="min-h-screen bg-cover bg-center bg-no-repeat"
+    style="background-image: url('https://nondoc.com/wp-content/uploads/2022/12/Pile-of-papers.jpg');">
 
-                        if ($_SESSION['status'] == "200") {
-                            echo "<h1 style='color: green;'>{$_SESSION['message']}</h1>";
-                        } else {
-                            echo "<h1 style='color: red;'>{$_SESSION['message']}</h1>";
-                        }
-                    }
-                    unset($_SESSION['message']);
-                    unset($_SESSION['status']);
-                    ?>
-                    <div class="card-header">
-                        <h2>Welcome to admin side! Register Now as admin!</h2>
-                    </div>
-                    <form action="core/handler.php" method="POST">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Username</label>
-                                <input type="text" class="form-control" name="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" class="form-control" name="password" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Confirm Password</label>
-                                <input type="password" class="form-control" name="confirm_password" required>
-                                <input type="submit" class="btn btn-primary float-right mt-4" name="insertNewUserBtn">
-                            </div>
-                        </div>
-                    </form>
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="flex relative z-10 min-h-screen px-4 items-center justify-center">
+        <div class="w-full max-w-lg p-8 bg-white rounded-xl shadow-lg">
+
+            <?php if (isset($_SESSION['message']) && isset($_SESSION['status'])): ?>
+                <div class="mb-4 text-center font-semibold 
+                    <?= $_SESSION['status'] == "200" ? 'text-green-600' : 'text-red-600' ?>">
+                    <?= htmlspecialchars($_SESSION['message']); ?>
                 </div>
-            </div>
+                <?php
+                unset($_SESSION['message']);
+                unset($_SESSION['status']);
+                ?>
+            <?php endif; ?>
+
+            <h2 class="mb-6 text-2xl font-bold text-center text-gray-800">
+                Register your own writer account!
+            </h2>
+
+            <form action="core/handler.php" method="POST" class="space-y-4">
+                <div>
+                    <label for="username" class="text-gray-700 font-medium mb-1">Username</label>
+                    <input type="text" id="username" placeholder="John" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label for="email" class="text-gray-700 font-medium mb-1">Email</label>
+                    <input type="email" id="email" placeholder="example@email.com" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label for="password" class="text-gray-700 font-medium mb-1">Password</label>
+                    <input type="password" id="password" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label for="confirm_password" class="text-gray-700 font-medium mb-1">Confirm Password</label>
+                    <input type="password" id="confirm_password" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label for="role" class="text-gray-700 font-medium mb-1">User Role</label>
+                    <select id="role" name="role" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <option value="" disabled selected>Select role</option>
+                        <option value="1">Admin</option>
+                        <option value="0">Writer</option>
+                    </select>
+                </div>
+
+                <div class="pt-4">
+                    <input type="submit" id="insertNewUserBtn" value="Register"
+                        class="w-full py-2 bg-green-600 rounded-lg text-white font-semibold hover:bg-green-700 transition cursor-pointer">
+                </div>
+            </form>
         </div>
     </div>
 </body>

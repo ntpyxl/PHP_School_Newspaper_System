@@ -2,59 +2,58 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>School Publication - Login</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <style>
-        body {
-            font-family: "Arial";
-            background-image: url("https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-        }
-    </style>
-    <title>Hello, world!</title>
+    <link href="core/styles.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 p-5">
-                <div class="card shadow">
-                    <div class="card-header">
-                        <h2>Welcome to the admin panel! Login Now!</h2>
-                    </div>
-                    <form action="core/handler.php" method="POST">
-                        <div class="card-body">
-                            <?php
-                            if (isset($_SESSION['message']) && isset($_SESSION['status'])) {
+<body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
+    style="background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0');">
 
-                                if ($_SESSION['status'] == "200") {
-                                    echo "<h1 style='color: green;'>{$_SESSION['message']}</h1>";
-                                } else {
-                                    echo "<h1 style='color: red;'>{$_SESSION['message']}</h1>";
-                                }
-                            }
-                            unset($_SESSION['message']);
-                            unset($_SESSION['status']);
-                            ?>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Password</label>
-                                <input type="password" class="form-control" name="password">
-                                <input type="submit" class="btn btn-primary float-right mt-4" name="loginUserBtn">
-                            </div>
-                        </div>
-                    </form>
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="flex relative z-10 min-h-screen px-4 items-center justify-center">
+        <div class="w-full max-w-lg p-8 bg-white rounded-xl shadow-lg">
+
+            <?php
+            if (isset($_SESSION['message']) && isset($_SESSION['status'])) {
+                if ($_SESSION['status'] == "200") {
+                    echo "<p class='text-green-600 font-semibold'>{$_SESSION['message']}</p>";
+                } else {
+                    echo "<p class='text-red-600 font-semibold'>{$_SESSION['message']}</p>";
+                }
+            }
+            unset($_SESSION['message']);
+            unset($_SESSION['status']);
+            ?>
+
+            <h2 class="mb-6 text-2xl font-bold text-center text-gray-800">Log in to your writer account!</h2>
+
+            <form action="core/handler.php" method="POST" class="space-y-4">
+                <div>
+                    <label for="email" class="text-gray-700 font-medium mb-1">Email</label>
+                    <input type="email" id="email" name="email" placeholder="example@email.com" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
                 </div>
-            </div>
+
+                <div>
+                    <label for="password" class="text-gray-700 font-medium mb-1">Password</label>
+                    <input type="password" id="password" name="password" required
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <div class="pt-4">
+                    <button type="submit" id="loginUserBtn" name="loginUserBtn"
+                        class="w-full py-2 bg-green-600 rounded-lg hover:bg-green-700 text-white font-semibold transition cursor-pointer">
+                        Log In
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
+
 </body>
 
 </html>

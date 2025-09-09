@@ -52,6 +52,7 @@ class Article extends Database
                 JOIN school_publication_users ON 
                 articles.author_id = school_publication_users.user_id 
                 WHERE is_active = 1 ORDER BY articles.created_at DESC";
+        // TODO: ALSO RETURNS USER LOGIN INFO!!!!!!!!!!!
 
         return $this->executeQuery($sql);
     }

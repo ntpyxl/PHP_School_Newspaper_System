@@ -1,22 +1,58 @@
-<nav class="navbar navbar-expand-lg navbar-dark p-4" style="background-color: #355E3B;"> <!-- writer #355E3B; admin #008080 -->
-    <a class="navbar-brand" href="index.php">Writer Panel</a> <!-- writer "writer panel"; admin "admin panel" -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="articles_from_students.php">Pending Articles </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="articles_submitted.php">Articles Submitted</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="core/handler.php?logoutUserBtn=1">Logout</a>
-            </li>
-        </ul>
+<nav class="p-4 bg-green-900 text-white">
+    <div class="container mx-auto flex items-center justify-between">
+
+        <a href="index.php" class="text-white text-xl font-semibold">
+            School Publication Homepage
+        </a>
+
+        <button class="lg:hidden focus:outline-none" id="menu-toggle">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+
+        <div class="hidden lg:flex space-x-6" id="menu">
+            <a
+                href="index.php"
+                class="text-white hover:underline underline-offset-4">
+                Home
+            </a>
+
+            <a
+                href="#"
+                class="text-white hover:underline underline-offset-4">
+                Articles
+            </a>
+
+            <a
+                href="index.php#aboutUs"
+                class="text-white hover:underline underline-offset-4">
+                About Us
+            </a>
+
+            <a
+                href="dashboard/publish.php"
+                class="text-white hover:underline underline-offset-4">
+                Publish
+            </a>
+
+            <?php
+            if ($userObj->isLoggedIn()) {
+            ?>
+                <a
+                    href="core/handler.php?logoutUserBtn=1"
+                    class="text-white hover:underline underline-offset-4">
+                    Logout
+                </a>
+            <?php
+            }
+            ?>
+        </div>
     </div>
 </nav>
+
+<script>
+    document.getElementById("menu-toggle").addEventListener("click", function() {
+        document.getElementById("menu").classList.toggle("hidden");
+    });
+</script>
