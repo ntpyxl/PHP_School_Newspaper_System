@@ -31,22 +31,10 @@
             </a>
 
             <a
-                href="dashboard/publish.php"
+                href="dashboard/"
                 class="text-white hover:underline underline-offset-4">
                 Publish
             </a>
-
-            <?php
-            if ($userObj->isLoggedIn()) {
-            ?>
-                <a
-                    href="core/handler.php?logoutUserBtn=1"
-                    class="text-white hover:underline underline-offset-4">
-                    Logout
-                </a>
-            <?php
-            }
-            ?>
         </div>
     </div>
 </nav>

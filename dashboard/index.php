@@ -1,14 +1,81 @@
-maybe this should just be publish.php and while also displaying the writer's published articles. shared articles should be displayed in shared_articles.php
+<?php require_once __DIR__ . '/../core/classloader.php'; ?>
 
-display published articles with just title and date posted, then on click open a modal containing scrollable content.
-user_pending_articles.php already does this along with edit and delete.
+<?php
+if (!$userObj->isLoggedIn()) {
+    header("Location: ../login.php");
+}
+?>
+<!doctype html>
+<html lang="en">
 
-same for shared articles but on click should be just new page shared_articles.php
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>School Publication - Publish</title>
 
-**retain articles_from_students.php (admin, approves articles for publish) and user_pending_articles.php (writer)**
-rename writer page to published_articles.php
-rename admin page to review_articles.php
+    <link href="../core/styles.css" rel="stylesheet">
+</head>
 
-writer page just displays writer's published articles and allows for editing and deletion
-admin page just displays all articles and its status (pending, active), and allows for deletion. should maybe just change status to 'rejected' instead of permanent deletion.
-should also add 'inactive' status, to signify that it's no longer recent and thus should not be shown in the homepage
+<body class="font-sans bg-gray-50 min-h-screen">
+    <?php include __DIR__ . '/../components/navbar.php'; ?>
+
+    <div class="mx-auto px-16 py-3">
+        <h1 class="py-3 text-3xl font-bold">
+            Hello there <span class="text-green-600 font-semibold"><?php echo $_SESSION['username']; ?></span>!
+            What would you like to <span class="text-green-600">publish</span> today?
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 mt-3 gap-8">
+            <div class="md:col-span-1 space-y-6">
+                <div class="space-y-3">
+                    <button
+                        onclick="window.location.href='published_articles.php'"
+                        class="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">
+                        My Articles
+                    </button>
+
+                    <button
+                        onclick="window.location.href='shared_articles.php'"
+                        class="w-full py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">
+                        Articles Shared to Me
+                    </button>
+
+                    <button
+                        onclick="window.location.href='review_articles.php'"
+                        class="w-full py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition cursor-pointer">
+                        Review Articles
+                    </button>
+
+                    <button
+                        onclick="window.location.href='../core/handler.php?logoutUserBtn=1'"
+                        class="w-full py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer">
+                        Logout
+                    </button>
+                </div>
+            </div>
+
+            <div class="md:col-span-3 space-y-6">
+                <form action="../core/handler.php" method="POST" class="bg-white shadow-md rounded-lg p-6 space-y-4">
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-gray-700">Article Title</label>
+                        <input type="text" name="title" placeholder="Your Title Here" required
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <div>
+                        <label for="description" class="block text-sm font-medium text-gray-700">Article Content</label>
+                        <textarea name="description" placeholder="Your Article Here" required
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 h-32 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" name="insertArticleBtn"
+                            class="w-full py-2 bg-green-600 rounded-lg hover:bg-green-700 text-white font-semibold transition cursor-pointer">
+                            Submit Article
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
