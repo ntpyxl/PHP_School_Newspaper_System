@@ -1,4 +1,6 @@
-<?php require_once __DIR__ . '/core/classloader.php'; ?>
+<?php
+require_once __DIR__ . '/core/classloader.php';
+require_once __DIR__ . "/core/helperFunctions.php"; ?>
 
 <!doctype html>
 <html lang="en">
@@ -42,7 +44,23 @@
                             on <?php echo date("F j, Y g:i A", strtotime($article['created_at'])); ?>
                         </p>
 
-                        <p class="mt-2 text-gray-700"><?php echo $article['content']; ?></p>
+                        <?php list($previewContent, $fullContent) = limit_words($article['content']); ?>
+                        <div class="article-preview space-y-2">
+                            <p class="mt-2 text-gray-700 whitespace-pre-line short-content">
+                                <?php echo $previewContent; ?>
+                            </p>
+
+                            <p class="mt-2 text-gray-700 whitespace-pre-line full-content hidden">
+                                <?php echo $fullContent; ?>
+                            </p>
+
+                            <?php if ($previewContent !== $fullContent) { ?>
+                                <button class="toggleContent text-green-600 font-medium hover:underline cursor-pointer">
+                                    Read more →
+                                </button>
+                            <?php } ?>
+                        </div>
+
                     </div>
                 <?php } ?>
 
@@ -113,6 +131,9 @@
             School Publication
         </div>
     </footer>
+
+    <script src="core/scripts/articleExpander.js"></script>
+
 </body>
 
 </html>
