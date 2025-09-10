@@ -19,7 +19,7 @@ class Article extends Database
      */
     public function createArticle($title, $content, $author_id)
     {
-        $sql = "INSERT INTO articles (title, content, author_id, is_active) VALUES (?, ?, ?, 1)";
+        $sql = "INSERT INTO articles (title, content, author_id) VALUES (?, ?, ?)";
         return $this->executeNonQuery($sql, [$title, $content, $author_id]);
     }
 
@@ -34,7 +34,16 @@ class Article extends Database
             $sql = "SELECT * FROM articles WHERE article_id = ?";
             return $this->executeQuerySingle($sql, [$id]);
         }
-        $sql = "SELECT * FROM articles 
+        $sql = "SELECT
+                articles.article_id,
+                articles.title,
+                articles.content,
+                articles.author_id,
+                school_publication_users.username,
+                school_publication_users.is_admin,
+                articles.status,
+                articles.created_at
+                FROM articles 
                 JOIN school_publication_users ON 
                 articles.author_id = school_publication_users.user_id 
                 ORDER BY articles.created_at DESC";
@@ -44,15 +53,23 @@ class Article extends Database
 
     public function getActiveArticles($id = null)
     {
-        if ($id) {
+        if ($id) { // TODO: Remove this, use to another func
             $sql = "SELECT * FROM articles WHERE article_id = ?";
             return $this->executeQuerySingle($sql, [$id]);
         }
-        $sql = "SELECT * FROM articles 
+        $sql = "SELECT
+                articles.article_id,
+                articles.title,
+                articles.content,
+                articles.author_id,
+                school_publication_users.username,
+                school_publication_users.is_admin,
+                articles.status,
+                articles.created_at
+                FROM articles 
                 JOIN school_publication_users ON 
                 articles.author_id = school_publication_users.user_id 
-                WHERE is_active = 1 ORDER BY articles.created_at DESC";
-        // TODO: ALSO RETURNS USER LOGIN INFO!!!!!!!!!!!
+                WHERE status = 'active' ORDER BY articles.created_at DESC";
 
         return $this->executeQuery($sql);
     }
@@ -60,7 +77,16 @@ class Article extends Database
 
     public function getArticlesByUserID($user_id)
     {
-        $sql = "SELECT * FROM articles 
+        $sql = "SELECT 
+                articles.article_id,
+                articles.title,
+                articles.content,
+                articles.author_id,
+                school_publication_users.username,
+                school_publication_users.is_admin,
+                articles.status,
+                articles.created_at
+                FROM articles 
                 JOIN school_publication_users ON 
                 articles.author_id = school_publication_users.user_id
                 WHERE author_id = ? ORDER BY articles.created_at DESC";
@@ -81,20 +107,20 @@ class Article extends Database
     }
 
     /**
-     * Toggles the visibility (is_active status) of an article.
+     * Changes the visibility status of an article.
      * This operation is restricted to admin users only.
      * @param int $id The article ID to update.
-     * @param bool $is_active The new visibility status.
+     * @param string $status The new visibility status.
      * @return int The number of affected rows.
      */
-    public function updateArticleVisibility($id, $is_active)
+    public function updateArticleVisibility($id, $status)
     {
         $userModel = new User();
         if (!$userModel->isAdmin()) {
             return 0;
         }
-        $sql = "UPDATE articles SET is_active = ? WHERE article_id = ?";
-        return $this->executeNonQuery($sql, [(int)$is_active, $id]);
+        $sql = "UPDATE articles SET status = ? WHERE article_id = ?";
+        return $this->executeNonQuery($sql, [$status, $id]);
     }
 
 

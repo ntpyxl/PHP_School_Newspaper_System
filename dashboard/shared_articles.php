@@ -11,7 +11,7 @@ if (!$userObj->isLoggedIn()) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shared Articles</title>
+    <title>Shared Articles - School Publication</title>
 
     <link href="../core/styles.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

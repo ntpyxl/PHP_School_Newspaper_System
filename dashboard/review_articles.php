@@ -13,7 +13,7 @@ if (!$userObj->isLoggedIn()) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Review Articles</title>
+    <title>Review Articles - School Publication</title>
 
     <link href="../core/styles.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -58,68 +58,83 @@ if (!$userObj->isLoggedIn()) {
             </div>
 
             <div class="md:col-span-3 space-y-6">
-                <?php $articles = $articleObj->getArticles(); ?>
-                <?php foreach ($articles as $article) { ?>
+                <?php
+                $articles = $articleObj->getArticles();
+                foreach ($articles as $article) {
+                ?>
                     <div class="bg-white shadow-md rounded-lg p-6">
-                        <h1 class="text-xl font-bold text-gray-900 mb-2">
-                            <?php echo $article['title']; ?>
-                        </h1>
 
-                        <small class="block text-gray-600 mb-2">
-                            <?php echo $article['username'] ?> - <?php echo $article['created_at']; ?>
-                        </small>
+                        <h2 class="text-xl font-semibold"><?php echo $article['title']; ?></h2>
 
-                        <?php if ($article['is_active'] == 0) { ?>
-                            <p class="text-red-600 font-semibold mb-2">Status: PENDING</p>
-                        <?php } ?>
-                        <?php if ($article['is_active'] == 1) { ?>
-                            <p class="text-green-600 font-semibold mb-2">Status: ACTIVE</p>
-                        <?php } ?>
+                        <p class="block text-gray-600 text-sm">
+                            Published by
 
-                        <p class="text-gray-700 mb-4"><?php echo $article['content']; ?></p>
+                            <?php if ($article['is_admin'] == 1) { ?>
+                                <span class="px-1 rounded-md bg-blue-600 text-white text-xs">Admin</span>
+                            <?php } elseif ($article['is_admin'] == 0) { ?>
+                                <span class="px-1 rounded-md bg-green-600 text-white text-xs">Writer</span>
+                            <?php } ?>
 
-                        <!-- Delete Form -->
-                        <form class="deleteArticleForm mb-3">
-                            <input type="hidden" name="article_id" value="<?php echo $article['article_id']; ?>" class="article_id">
-                            <button type="submit"
-                                class="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition deleteArticleBtn">
+                            <span class="font-bold"><?php echo $article['username'] ?></span>
+
+                            on <?php echo date("F j, Y g:i A", strtotime($article['created_at'])); ?>
+                        </p>
+
+                        <?php
+                        $articleStatus = $article['status'];
+                        $statusTextColor = "";
+                        if ($articleStatus == "pending" || $articleStatus == "inactive") {
+                            $statusTextColor = "text-teal-600";
+                        } else if ($articleStatus == "rejected" || $articleStatus == "removed") {
+                            $statusTextColor = "text-red-600";
+                        } else if ($articleStatus == "active") {
+                            $statusTextColor = "text-green-600";
+                        }
+                        ?>
+                        <p class="<?php echo $statusTextColor; ?> font-medium mt-2">
+                            Status: <?php echo strtoupper($articleStatus); ?>
+                        </p>
+
+                        <div class="flex flex-row mt-5 py-2 space-x-3">
+                            <select
+                                name="selectArticleStatus"
+                                data-article-id="<?php echo $article['article_id']; ?>"
+                                class="selectArticleStatus px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
+                                <option value="pending" <?php if ($articleStatus == "pending") { ?>selected<?php } ?>>Pending</option>
+                                <option value="rejected" <?php if ($articleStatus == "rejected") { ?>selected<?php } ?>>Rejected</option>
+                                <option value="active" <?php if ($articleStatus == "active") { ?>selected<?php } ?>>Active</option>
+                                <option value="inactive" <?php if ($articleStatus == "inactive") { ?>selected<?php } ?>>Inactive</option>
+                            </select>
+
+                            <!-- TODO: Don't show these buttons so it can't be deleted before changed from pending -->
+                            <button
+                                data-article-id="<?php echo $article['article_id']; ?>"
+                                data-article-title="<?php echo $article['title']; ?>"
+                                data-article-content="<?php echo $article['content']; ?>"
+                                data-return-to="review_articles"
+                                class="editArticleButton px-3 py-1 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">
+                                Edit
+                            </button>
+
+                            <button
+                                data-article-id="<?php echo $article['article_id']; ?>"
+                                class="deleteArticleButton px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer">
                                 Delete
                             </button>
-                        </form>
-
-                        <!-- Update Status -->
-                        <form class="updateArticleStatus mb-3">
-                            <input type="hidden" name="article_id" value="<?php echo $article['article_id']; ?>" class="article_id">
-                            <select name="is_active" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:outline-none is_active_select"
-                                article_id="<?php echo $article['article_id']; ?>">
-                                <option value="">Select an option</option>
-                                <option value="0">Pending</option>
-                                <option value="1">Active</option>
-                            </select>
-                        </form>
-
-                        <!-- Update Article Form (Hidden by default) -->
-                        <div class="updateArticleForm hidden">
-                            <h4 class="text-lg font-semibold mb-3">Edit the article</h4>
-                            <form action="core/handler.php" method="POST" class="space-y-4">
-                                <input type="text" name="title" value="<?php echo $article['title']; ?>"
-                                    class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:outline-none">
-
-                                <textarea name="description"
-                                    class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-green-500 focus:outline-none"><?php echo $article['content']; ?></textarea>
-
-                                <input type="hidden" name="article_id" value="<?php echo $article['article_id']; ?>">
-                                <button type="submit" name="editArticleBtn"
-                                    class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
-                                    Save Changes
-                                </button>
-                            </form>
                         </div>
                     </div>
                 <?php } ?>
             </div>
         </div>
     </div>
+
+    <!-- Article Related Modals -->
+    <?php include __DIR__ . '/../components/readArticleModal.php'; ?>
+    <?php include __DIR__ . '/../components/editArticleModal.php'; ?>
+
+    <script src="../core/scripts/articleBoxScript.js"></script>
+    <script src="../core/scripts/adminReviewScript.js"></script>
+
 </body>
 
 </html>

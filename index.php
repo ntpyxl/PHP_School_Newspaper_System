@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>School Publication - Homepage</title>
+    <title>Homepage - School Publication</title>
 
     <link href="core/styles.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

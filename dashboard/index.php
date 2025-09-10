@@ -11,7 +11,7 @@ if (!$userObj->isLoggedIn()) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>School Publication - Publish</title>
+    <title>Writer Dashboard - School Publication</title>
 
     <link href="../core/styles.css" rel="stylesheet">
 </head>

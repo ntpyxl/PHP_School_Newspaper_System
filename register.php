@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>School Publication - Register</title>
+    <title>Register - School Publication</title>
 
     <link href="core/styles.css" rel="stylesheet">
 </head>
