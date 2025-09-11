@@ -34,7 +34,6 @@ class User extends Database
         }
     }
 
-
     /**
      * Registers a new user.
      * @param string $username The user's username.

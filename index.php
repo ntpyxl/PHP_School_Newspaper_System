@@ -136,6 +136,7 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
     </footer>
 
     <script src="core/scripts/articleExpander.js"></script>
+    <script src="core/scripts/articleSharing.js"></script>
 
 </body>
 

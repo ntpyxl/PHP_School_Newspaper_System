@@ -28,8 +28,12 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
                     <div class="my-3 p-5 rounded-lg bg-white shadow">
                         <div class="flex justify-between items-center">
                             <h2 class="mb-2 text-2xl font-bold"><?php echo $article['title']; ?></h2>
+
+                            <!-- TODO: Hide this button when not logged in or user is also author. -->
                             <button
+                                id="requestShareArticleButton"
                                 data-article-id="<?php echo $article['article_id']; ?>"
+                                data-requested-by="<?php echo $_SESSION['user_id']; ?>"
                                 class="px-2 py-1 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition cursor-pointer">
                                 Request Edit
                             </button>
@@ -99,6 +103,7 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
     </footer>
 
     <script src="core/scripts/articleExpander.js"></script>
+    <script src="core/scripts/articleSharing.js"></script>
 
 </body>
 

@@ -72,3 +72,31 @@ $('.deleteArticleButton').on('click', function(event) {
         })
     }
 })
+
+$('.selectShareStatus').on('click', function(event) {
+    event.stopPropagation();
+})
+
+$('.selectShareStatus').on('change', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var formData = {
+        share_id: $(this).data('share-id'),
+        share_status: $(this).val(),
+        editShareStatusRequest: 1
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "../core/handler.php",
+        data: formData,
+        success: function(data) {
+            if (data) {
+                location.reload();
+            } else {
+                alert("Share Status update failed");
+            }
+        }
+    })
+})

@@ -115,3 +115,17 @@ if (isset($_POST['deleteArticleButton'])) {
         exit;
     }
 }
+
+if (isset($_POST['requestShareArticle'])) {
+    $article_id = $_POST['article_id'];
+    $requested_by = $_POST['requested_by'];
+
+    echo ($articleObj->requestAccess($article_id, $requested_by));
+}
+
+if (isset($_POST['editShareStatusRequest'])) {
+    $share_id = $_POST['share_id'];
+    $share_status = $_POST['share_status'];
+
+    echo $articleObj->updateShareStatus($share_id, $share_status);
+}
