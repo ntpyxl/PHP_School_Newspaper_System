@@ -23,14 +23,14 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
         <div class="flex justify-center">
             <div class="w-full md:w-2/3">
                 <?php
-                $articles = $articleObj->getActiveArticles(); // TODO: should just return 4/5 articles next time
+                $articles = $articleObj->getActiveArticles();
                 foreach ($articles as $article) { ?>
                     <div class="my-3 p-5 rounded-lg bg-white shadow">
                         <h2 class="mb-2 text-2xl font-bold">
                             <?php echo $article['title']; ?>
                         </h2>
 
-                        <p class="block mb-3 text-gray-600 text-sm">
+                        <p class="block text-gray-600 text-sm">
                             Published by
 
                             <?php if ($article['is_admin'] == 1) { ?>
@@ -46,11 +46,11 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
 
                         <?php list($previewContent, $fullContent) = limit_words($article['content']); ?>
                         <div class="article-preview space-y-2">
-                            <p class="mt-2 text-gray-700 whitespace-pre-line short-content">
+                            <p class="text-gray-700 whitespace-pre-line short-content">
                                 <?php echo $previewContent; ?>
                             </p>
 
-                            <p class="mt-2 text-gray-700 whitespace-pre-line full-content hidden">
+                            <p class="text-gray-700 whitespace-pre-line full-content hidden">
                                 <?php echo $fullContent; ?>
                             </p>
 
@@ -65,7 +65,10 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
                 <?php } ?>
 
                 <div class="flex justify-center items-center">
-                    <button type="button" class="mt-6 px-4 py-2 rounded-md bg-green-600 shadow text-white hover:bg-green-700 cursor-pointer">
+                    <button
+                        type="button"
+                        onclick="window.location.href='allArticles.php';"
+                        class="mt-6 px-4 py-2 rounded-md bg-green-600 shadow text-white hover:bg-green-700 cursor-pointer">
                         View More Articles
                     </button>
                 </div>

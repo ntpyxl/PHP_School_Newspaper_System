@@ -19,7 +19,7 @@
             </a>
 
             <a
-                href="#"
+                href="allArticles.php"
                 class="text-white hover:underline underline-offset-4">
                 Articles
             </a>

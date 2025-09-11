@@ -51,12 +51,27 @@ class Article extends Database
         return $this->executeQuery($sql);
     }
 
-    public function getActiveArticles($id = null)
+    public function getApprovedArticles()
     {
-        if ($id) { // TODO: Remove this, use to another func
-            $sql = "SELECT * FROM articles WHERE article_id = ?";
-            return $this->executeQuerySingle($sql, [$id]);
-        }
+        $sql = "SELECT
+                articles.article_id,
+                articles.title,
+                articles.content,
+                articles.author_id,
+                school_publication_users.username,
+                school_publication_users.is_admin,
+                articles.status,
+                articles.created_at
+                FROM articles 
+                JOIN school_publication_users ON 
+                articles.author_id = school_publication_users.user_id 
+                WHERE status IN ('active', 'inactive') ORDER BY articles.created_at DESC";
+
+        return $this->executeQuery($sql);
+    }
+
+    public function getActiveArticles()
+    {
         $sql = "SELECT
                 articles.article_id,
                 articles.title,
