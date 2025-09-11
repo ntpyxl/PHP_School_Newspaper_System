@@ -162,7 +162,7 @@ class Article extends Database
     }
 
     /**
-     * Creates a share request to an article.
+     * Gets the share requests of an author.
      * @param int $author_id The author ID of the articles to retreive.
      * @return array
      */
@@ -195,6 +195,24 @@ class Article extends Database
                 ORDER BY sa.requested_at DESC;";
         return $this->executeQuery($sql, [$author_id]);
     }
+
+    /**
+     * Gets the share request of an article.
+     * @param int $article_id The article ID of the article.
+     * @param int $requested_by The user ID of the requester.
+     * @return bool
+     */
+    public function doesShareRequestExist($article_id, $requested_by)
+    {
+        $sql = "SELECT 1 
+            FROM shared_articles 
+            WHERE article_id = ? AND requested_by = ? 
+            LIMIT 1";
+        $result = $this->executeQuery($sql, [$article_id, $requested_by]);
+
+        return !empty($result);
+    }
+
 
     public function updateShareStatus($id, $status)
     {

@@ -84,21 +84,22 @@ if (!$userObj->isAdmin()) {
                                 <option value="inactive" <?php if ($articleStatus == "inactive") { ?>selected<?php } ?>>Inactive</option>
                             </select>
 
-                            <!-- TODO: Don't show these buttons so it can't be deleted before changed from pending -->
-                            <button
-                                data-article-id="<?php echo $article['article_id']; ?>"
-                                data-article-title="<?php echo $article['title']; ?>"
-                                data-article-content="<?php echo $article['content']; ?>"
-                                data-return-to="review_articles"
-                                class="editArticleButton px-3 py-1 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">
-                                Edit
-                            </button>
+                            <?php if ($articleStatus != "pending") { ?>
+                                <button
+                                    data-article-id="<?php echo $article['article_id']; ?>"
+                                    data-article-title="<?php echo $article['title']; ?>"
+                                    data-article-content="<?php echo $article['content']; ?>"
+                                    data-return-to="review_articles"
+                                    class="editArticleButton px-3 py-1 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">
+                                    Edit
+                                </button>
 
-                            <button
-                                data-article-id="<?php echo $article['article_id']; ?>"
-                                class="deleteArticleButton px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer">
-                                Delete
-                            </button>
+                                <button
+                                    data-article-id="<?php echo $article['article_id']; ?>"
+                                    class="deleteArticleButton px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer">
+                                    Delete
+                                </button>
+                            <?php } ?>
                         </div>
                     </div>
                 <?php } ?>

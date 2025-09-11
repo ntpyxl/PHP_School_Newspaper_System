@@ -17,12 +17,13 @@
         Articles Shared to Me
     </button>
 
-    <!-- TODO: SHOULD NOT BE SEEN BY WRITERS -->
-    <button
-        onclick="window.location.href='review_articles.php'"
-        class="w-full py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition cursor-pointer">
-        Review Articles
-    </button>
+    <?php if ($userObj->isAdmin()) { ?>
+        <button
+            onclick="window.location.href='review_articles.php'"
+            class="w-full py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition cursor-pointer">
+            Review Articles
+        </button>
+    <?php } ?>
 
     <button
         onclick="window.location.href='../core/handler.php?logoutUserBtn=1'"

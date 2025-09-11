@@ -29,7 +29,13 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
                         <div class="flex justify-between items-center">
                             <h2 class="mb-2 text-2xl font-bold"><?php echo $article['title']; ?></h2>
 
-                            <?php if ($userObj->isLoggedIn() && $_SESSION['user_id'] != $article['author_id']) { ?>
+                            <?php
+                            $isLoggedIn = $userObj->isLoggedIn();
+                            $isUserTheAuthor = $_SESSION['user_id'] == $article['author_id'];
+                            $isRequestAlreadyExist = $articleObj->doesShareRequestExist($article['article_id'], $_SESSION['user_id']);
+
+                            if ($isLoggedIn && !$isUserTheAuthor && !$isRequestAlreadyExist) {
+                            ?>
                                 <button
                                     data-article-id="<?php echo $article['article_id']; ?>"
                                     data-requested-by="<?php echo $_SESSION['user_id']; ?>"
