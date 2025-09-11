@@ -5,6 +5,7 @@ if (isset($_POST['insertNewUserBtn'])) {
     $username = htmlspecialchars(trim($_POST['username']));
     $email = htmlspecialchars(trim($_POST['email']));
     $password = trim($_POST['password']);
+    $is_admin = $_POST['role'];
     $confirm_password = trim($_POST['confirm_password']);
 
     if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
@@ -28,7 +29,7 @@ if (isset($_POST['insertNewUserBtn'])) {
         exit;
     }
 
-    if ($userObj->registerUser($username, $email, $password)) {
+    if ($userObj->registerUser($username, $email, $password, $is_admin)) {
         header("Location: ../login.php");
         exit;
     } else {

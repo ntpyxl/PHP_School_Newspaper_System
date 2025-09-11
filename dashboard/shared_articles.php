@@ -51,7 +51,17 @@ if (!$userObj->isLoggedIn()) {
                                 <h2 class="text-xl font-semibold"><?php echo $article['title']; ?></h2>
 
                                 <p class="block text-gray-600 text-sm">
-                                    Requested on <?php echo date("F j, Y g:i A", strtotime($article['requested_at'])); ?>
+                                    Requested by
+
+                                    <?php if ($article['requester_is_admin'] == 1) { ?>
+                                        <span class="px-1 rounded-md bg-blue-600 text-white text-xs">Admin</span>
+                                    <?php } elseif ($article['requester_is_admin'] == 0) { ?>
+                                        <span class="px-1 rounded-md bg-green-600 text-white text-xs">Writer</span>
+                                    <?php } ?>
+
+                                    <span class="font-bold"><?php echo $article['requester_username'] ?></span>
+
+                                    on <?php echo date("F j, Y g:i A", strtotime($article['requested_at'])); ?>
                                 </p>
 
                                 <?php
@@ -101,7 +111,17 @@ if (!$userObj->isLoggedIn()) {
                                 <h2 class="text-xl font-semibold"><?php echo $article['title']; ?></h2>
 
                                 <p class="block text-gray-600 text-sm">
-                                    Requested on <?php echo date("F j, Y g:i A", strtotime($article['requested_at'])); ?>
+                                    Requested by
+
+                                    <?php if ($article['requester_is_admin'] == 1) { ?>
+                                        <span class="px-1 rounded-md bg-blue-600 text-white text-xs">Admin</span>
+                                    <?php } elseif ($article['requester_is_admin'] == 0) { ?>
+                                        <span class="px-1 rounded-md bg-green-600 text-white text-xs">Writer</span>
+                                    <?php } ?>
+
+                                    <span class="font-bold"><?php echo $article['requester_username'] ?></span>
+
+                                    on <?php echo date("F j, Y g:i A", strtotime($article['requested_at'])); ?>
                                 </p>
 
                                 <?php

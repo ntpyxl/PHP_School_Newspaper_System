@@ -42,7 +42,7 @@ class User extends Database
      * @param bool $is_admin Whether the user is an admin.
      * @return bool True on success, false on failure.
      */
-    public function registerUser($username, $email, $password, $is_admin = true)
+    public function registerUser($username, $email, $password, $is_admin)
     {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO school_publication_users (username, email, password, is_admin) VALUES (?, ?, ?, ?)";
