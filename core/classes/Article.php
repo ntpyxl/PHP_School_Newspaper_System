@@ -190,7 +190,8 @@ class Article extends Database
                     ON a.author_id = au.user_id
                 JOIN school_publication_users ru 
                     ON sa.requested_by = ru.user_id
-                WHERE a.author_id = ?
+                WHERE a.author_id = ? AND
+                sa.status IN ('pending', 'rejected')
                 ORDER BY sa.requested_at DESC;";
         return $this->executeQuery($sql, [$author_id]);
     }

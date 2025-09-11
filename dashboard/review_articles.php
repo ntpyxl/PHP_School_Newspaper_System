@@ -5,7 +5,9 @@ if (!$userObj->isLoggedIn()) {
     header("Location: ../login.php");
 }
 
-// TODO: SHOULD NOT BE ACCESSED BY WRITERS
+if (!$userObj->isAdmin()) {
+    header("Location: ../dashboard");
+}
 ?>
 <!doctype html>
 <html lang="en">

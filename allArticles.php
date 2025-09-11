@@ -29,13 +29,14 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
                         <div class="flex justify-between items-center">
                             <h2 class="mb-2 text-2xl font-bold"><?php echo $article['title']; ?></h2>
 
-                            <!-- TODO: Hide this button when not logged in or user is also author. -->
-                            <button
-                                data-article-id="<?php echo $article['article_id']; ?>"
-                                data-requested-by="<?php echo $_SESSION['user_id']; ?>"
-                                class="requestShareArticleButton px-2 py-1 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition cursor-pointer">
-                                Request Edit
-                            </button>
+                            <?php if ($userObj->isLoggedIn() && $_SESSION['user_id'] != $article['author_id']) { ?>
+                                <button
+                                    data-article-id="<?php echo $article['article_id']; ?>"
+                                    data-requested-by="<?php echo $_SESSION['user_id']; ?>"
+                                    class="requestShareArticleButton px-2 py-1 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition cursor-pointer">
+                                    Request Edit
+                                </button>
+                            <?php } ?>
                         </div>
 
                         <p class="block text-gray-600 text-sm">

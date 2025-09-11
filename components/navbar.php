@@ -1,6 +1,8 @@
 <nav class="p-4 bg-green-900 text-white">
     <div class="container mx-auto flex items-center justify-between">
 
+        <!-- TODO: Fix titles and improper links for dashboard -->
+
         <a href="index.php" class="text-white text-xl font-semibold">
             School Publication Homepage
         </a>
