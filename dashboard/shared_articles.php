@@ -73,7 +73,7 @@ if (!$userObj->isLoggedIn()) {
                                     name="selectShareStatus"
                                     data-share-id="<?php echo $article['share_id']; ?>"
                                     class="selectShareStatus mt-3 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
-                                    <option value="pending" <?php if ($shareStatus == "pending") { ?>selected<?php } ?>>Pending</option>
+                                    <option value="pending" disabled <?php if ($shareStatus == "pending") { ?>selected<?php } ?>>Pending</option>
                                     <option value="accepted" <?php if ($shareStatus == "accepted") { ?>selected<?php } ?>>Accept</option>
                                     <option value="rejected" <?php if ($shareStatus == "rejected") { ?>selected<?php } ?>>Reject</option>
                                 </select>

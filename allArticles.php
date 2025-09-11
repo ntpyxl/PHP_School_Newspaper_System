@@ -31,10 +31,9 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
 
                             <!-- TODO: Hide this button when not logged in or user is also author. -->
                             <button
-                                id="requestShareArticleButton"
                                 data-article-id="<?php echo $article['article_id']; ?>"
                                 data-requested-by="<?php echo $_SESSION['user_id']; ?>"
-                                class="px-2 py-1 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition cursor-pointer">
+                                class="requestShareArticleButton px-2 py-1 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition cursor-pointer">
                                 Request Edit
                             </button>
                         </div>

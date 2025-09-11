@@ -1,4 +1,4 @@
-$('#requestShareArticleButton').on('click', function(event) {
+$('.requestShareArticleButton').on('click', function(event) {
     event.preventDefault();
 
     var formData = {
