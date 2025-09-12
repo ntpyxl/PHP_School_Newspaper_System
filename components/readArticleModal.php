@@ -14,6 +14,9 @@
             </p>
 
             <div class="max-h-[60vh] p-3 mb-5 bg-gray-100 rounded-xl overflow-y-auto">
+                <div class="py-3">
+                    <img id="readModalImage" class="max-w-full rounded-lg hidden" alt="Article image">
+                </div>
                 <p id="readModalContent" class="whitespace-pre-line"></p>
             </div>
         </div>

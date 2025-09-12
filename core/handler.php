@@ -69,10 +69,11 @@ if (isset($_GET['logoutUserBtn'])) {
 
 if (isset($_POST['insertArticleBtn'])) {
     $title = $_POST['title'];
+    $image = $_POST['image'];
     $description = $_POST['description'];
     $author_id = $_SESSION['user_id'];
 
-    if ($articleObj->createArticle($title, $description, $author_id)) {
+    if ($articleObj->createArticle($title, $image, $description, $author_id)) {
         header("Location: ../dashboard/");
         exit;
     }

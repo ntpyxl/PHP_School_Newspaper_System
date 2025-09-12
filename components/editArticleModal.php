@@ -13,6 +13,12 @@
                     placeholder="Article Title">
             </div>
 
+            <div>
+                <input type="text" name="image" id="updateModalImage"
+                    class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                    placeholder="Article Image URL">
+            </div>
+
             <div class="max-h-[60vh] p-3 mb-5 bg-gray-100 rounded-xl overflow-y-auto">
                 <textarea name="content" id="updateModalContent"
                     class="w-full h-[50vh] px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"

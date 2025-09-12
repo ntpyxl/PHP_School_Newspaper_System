@@ -14,13 +14,14 @@ class Article extends Database
      * Creates a new article.
      * @param string $title The article title.
      * @param string $content The article content.
+     * @param string $image The article image.
      * @param int $author_id The ID of the author.
      * @return int The ID of the newly created article.
      */
-    public function createArticle($title, $content, $author_id)
+    public function createArticle($title, $image, $content, $author_id)
     {
-        $sql = "INSERT INTO articles (title, content, author_id) VALUES (?, ?, ?)";
-        return $this->executeNonQuery($sql, [$title, $content, $author_id]);
+        $sql = "INSERT INTO articles (title, image_url, content, author_id) VALUES (?, ?, ?, ?)";
+        return $this->executeNonQuery($sql, [$title, $image, $content, $author_id]);
     }
 
     /**
@@ -37,6 +38,7 @@ class Article extends Database
         $sql = "SELECT
                 articles.article_id,
                 articles.title,
+                articles.image_url,
                 articles.content,
                 articles.author_id,
                 school_publication_users.username,
@@ -60,6 +62,7 @@ class Article extends Database
         $sql = "SELECT
                 articles.article_id,
                 articles.title,
+                articles.image_url,
                 articles.content,
                 articles.author_id,
                 school_publication_users.username,
@@ -83,6 +86,7 @@ class Article extends Database
         $sql = "SELECT
                 articles.article_id,
                 articles.title,
+                articles.image_url,
                 articles.content,
                 articles.author_id,
                 school_publication_users.username,
@@ -106,6 +110,7 @@ class Article extends Database
         $sql = "SELECT 
                 articles.article_id,
                 articles.title,
+                articles.image_url,
                 articles.content,
                 articles.author_id,
                 school_publication_users.username,
@@ -172,6 +177,7 @@ class Article extends Database
                     sa.share_id,
                     a.article_id,
                     a.title,
+                    a.image_url,
                     a.content,
                     a.author_id,
                     au.username AS author_username,
@@ -227,6 +233,7 @@ class Article extends Database
                     sa.share_id,
                     a.article_id,
                     a.title,
+                    a.image_url,
                     a.content,
                     a.author_id,
                     au.username AS author_username,

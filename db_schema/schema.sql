@@ -10,6 +10,7 @@ CREATE TABLE school_publication_users (
 CREATE TABLE articles (
     article_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
+    image_url TEXT,
     content TEXT NOT NULL,
     author_id INT NOT NULL,
     status ENUM('pending', 'active', 'inactive', 'rejected') NOT NULL DEFAULT 'pending',

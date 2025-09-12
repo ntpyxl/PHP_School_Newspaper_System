@@ -38,6 +38,7 @@ if (!$userObj->isLoggedIn()) {
                 ?>
                     <div
                         data-article-title="<?php echo $article['title']; ?>"
+                        data-article-image-url="<?php echo $article['image_url']; ?>"
                         data-article-content="<?php echo $article['content']; ?>"
                         data-author-username="<?php echo $article['username']; ?>"
                         data-is-admin="<?php echo $article['is_admin']; ?>"
@@ -79,6 +80,7 @@ if (!$userObj->isLoggedIn()) {
                             <button
                                 data-article-id="<?php echo $article['article_id']; ?>"
                                 data-article-title="<?php echo $article['title']; ?>"
+                                data-article-image-url="<?php echo $article['image_url']; ?>"
                                 data-article-content="<?php echo $article['content']; ?>"
                                 data-return-to="published_articles"
                                 class="editArticleButton px-3 py-1 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">

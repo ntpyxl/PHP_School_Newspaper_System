@@ -1,5 +1,6 @@
 $('.articleCard').on('click', function(event) {
     let title = $(this).data("article-title");
+    let image = $(this).data("article-image-url");
     let content = $(this).data("article-content");
     let username = $(this).data("author-username");
     let isAdmin = $(this).data("is-admin");
@@ -9,6 +10,12 @@ $('.articleCard').on('click', function(event) {
     $("#readModalContent").text(content);
     $("#readModalUsername").text(username);
     $("#readModalCreatedAt").text(createdAt);
+
+    if (image) {
+        $("#readModalImage").attr("src", image).removeClass("hidden");
+    } else {
+        $("#readModalImage").addClass("hidden");
+    }
 
     if (isAdmin == 1) {
         $("#readModalRole").html('<span class="px-1 rounded-md bg-blue-600 text-white text-xs">Admin</span>');
@@ -31,11 +38,13 @@ $('.editArticleButton').on('click', function(event) {
 
     let id = $(this).data("article-id");
     let title = $(this).data("article-title");
+    let image = $(this).data("article-image-url");
     let content = $(this).data("article-content");
     let return_to = $(this).data("return-to");
 
     $("#updateModalArticleId").val(id);
     $("#updateModalTitle").val(title);
+    $("#updateModalImage").val(image);
     $("#updateModalContent").text(content);
     $("#updateModalRedir").val(return_to);
 

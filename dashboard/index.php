@@ -37,11 +37,19 @@ if (!$userObj->isLoggedIn()) {
                         <input type="text" name="title" placeholder="Your Title Here" required
                             class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
                     </div>
+
+                    <div>
+                        <label for="image" class="block text-sm font-medium text-gray-700">Article Image (optional)</label>
+                        <input type="text" name="image" placeholder="Your Image URL Here"
+                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+
                     <div>
                         <label for="description" class="block text-sm font-medium text-gray-700">Article Content</label>
                         <textarea name="description" placeholder="Your Article Here" required
                             class="w-full border border-gray-300 rounded-lg px-3 py-2 h-32 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
                     </div>
+
                     <div>
                         <button type="submit" name="insertArticleBtn"
                             class="w-full py-2 bg-green-600 rounded-lg hover:bg-green-700 text-white font-semibold transition cursor-pointer">
