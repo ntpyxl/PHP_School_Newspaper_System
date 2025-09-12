@@ -1,10 +1,23 @@
+<?php
+define("BASE_URL", "/php_school_newspaper_system/src/");
+$currentFile = basename($_SERVER['PHP_SELF']);
+$currentDir = basename(dirname($_SERVER['PHP_SELF']));
+
+$title = "School Publication";
+
+if ($currentDir === "src" && $currentFile === "index.php") {
+    $title = "School Publication Homepage";
+} elseif ($currentDir === "src" && $currentFile === "allArticles.php") {
+    $title = "School Publication Articles";
+} elseif ($currentDir === "dashboard") {
+    $title = "School Publication Dashboard";
+}
+?>
+
 <nav class="p-4 bg-green-900 text-white">
     <div class="container mx-auto flex items-center justify-between">
-
-        <!-- TODO: Fix titles and improper links for dashboard -->
-
         <a href="index.php" class="text-white text-xl font-semibold">
-            School Publication Homepage
+            <?php echo $title; ?>
         </a>
 
         <button class="lg:hidden focus:outline-none" id="menu-toggle">
@@ -15,25 +28,25 @@
 
         <div class="hidden lg:flex space-x-6" id="menu">
             <a
-                href="index.php"
+                href="<?php echo BASE_URL; ?>index.php"
                 class="text-white hover:underline underline-offset-4">
                 Home
             </a>
 
             <a
-                href="allArticles.php"
+                href="<?php echo BASE_URL; ?>allArticles.php"
                 class="text-white hover:underline underline-offset-4">
                 Articles
             </a>
 
             <a
-                href="index.php#aboutUs"
+                href="<?php echo BASE_URL; ?>index.php#aboutUs"
                 class="text-white hover:underline underline-offset-4">
                 About Us
             </a>
 
             <a
-                href="dashboard/"
+                href="<?php echo BASE_URL; ?>dashboard/"
                 class="text-white hover:underline underline-offset-4">
                 Publish
             </a>
