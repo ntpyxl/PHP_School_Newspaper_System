@@ -25,3 +25,13 @@ CREATE TABLE shared_articles (
     status ENUM('pending', 'accepted', 'rejected') NOT NULL DEFAULT 'pending',
     requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )
+
+CREATE TABLE article_notifications (
+    notification_id INT AUTO_INCREMENT PRIMARY KEY,
+    article_id INT,
+    article_title TEXT,
+    article_owner INT NOT NULL,
+    content TEXT NOT NULL,
+    user_id INT NOT NULL,
+    notified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)

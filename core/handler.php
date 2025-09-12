@@ -111,12 +111,23 @@ if (isset($_POST['updateArticleVisibility'])) {
 
 if (isset($_POST['deleteArticleButton'])) {
     $article_id = $_POST['article_id'];
+    $user_id = $_SESSION['user_id'];
 
     if ($articleObj->deleteArticle($article_id)) {
         header("Location: ../dashboard/");
         exit;
     }
 }
+
+if (isset($_POST['isDeletedByAdmin']) && $_POST['isDeletedByAdmin'] == 1) {
+    $article_title = $_POST['article_title'];
+    $article_owner = $_POST['article_owner'];
+    $user_id = $_SESSION['user_id'];
+
+    $notificationObj->createNotification($article_title, $article_owner, "deleted", $user_id);
+}
+
+
 
 if (isset($_POST['requestShareArticle'])) {
     $article_id = $_POST['article_id'];

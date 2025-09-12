@@ -96,6 +96,9 @@ if (!$userObj->isAdmin()) {
 
                                 <button
                                     data-article-id="<?php echo $article['article_id']; ?>"
+                                    data-article-title="<?php echo $article['title']; ?>"
+                                    data-article-owner="<?php echo $article['author_id']; ?>"
+                                    data-delete-by-admin="true"
                                     class="deleteArticleButton px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer">
                                     Delete
                                 </button>

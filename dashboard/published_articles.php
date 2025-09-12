@@ -43,7 +43,7 @@ if (!$userObj->isLoggedIn()) {
                         data-author-username="<?php echo $article['username']; ?>"
                         data-is-admin="<?php echo $article['is_admin']; ?>"
                         data-created-at="<?php echo date("F j, Y g:i A", strtotime($article['created_at'])); ?>"
-                        class="bg-white shadow-md rounded-lg p-6  articleCard cursor-pointer">
+                        class="bg-white shadow-md rounded-lg p-6 articleCard cursor-pointer">
 
                         <h2 class="text-xl font-semibold"><?php echo $article['title']; ?></h2>
 

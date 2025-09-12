@@ -63,7 +63,10 @@ $('.deleteArticleButton').on('click', function(event) {
 
     var formData = {
         article_id: $(this).data('article-id'),
-        deleteArticleBtn: 1
+        article_title: $(this).data('article-title'),
+        article_owner: $(this).data('article-owner'),
+        deleteArticleBtn: 1,
+        isDeletedByAdmin: $(this).data('delete-by-admin') ? 1 : 0
     }
 
     if (confirm("Are you sure you want to delete this article?")) {
