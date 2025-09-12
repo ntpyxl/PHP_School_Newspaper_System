@@ -7,6 +7,7 @@
     <title>Login - School Publication</title>
 
     <link href="core/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body class="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center"
@@ -47,7 +48,7 @@
                 <div class="pt-4">
                     <button type="submit" id="loginUserBtn" name="loginUserBtn"
                         class="w-full py-2 bg-green-600 rounded-lg hover:bg-green-700 text-white font-semibold transition cursor-pointer">
-                        Log In
+                        <i class="fa-solid fa-door-open"></i> Log In
                     </button>
                 </div>
             </form>

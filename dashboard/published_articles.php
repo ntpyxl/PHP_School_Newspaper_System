@@ -14,6 +14,7 @@ if (!$userObj->isLoggedIn()) {
     <title>Writer Articles - School Publication</title>
 
     <link href="../core/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 
@@ -84,13 +85,13 @@ if (!$userObj->isLoggedIn()) {
                                 data-article-content="<?php echo $article['content']; ?>"
                                 data-return-to="published_articles"
                                 class="editArticleButton px-3 py-1 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">
-                                Edit
+                                <i class="fa-solid fa-pen-to-square"></i> Edit
                             </button>
 
                             <button
                                 data-article-id="<?php echo $article['article_id']; ?>"
                                 class="deleteArticleButton px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer">
-                                Delete
+                                <i class="fa-solid fa-trash"></i> Delete
                             </button>
                         </div>
                     </div>

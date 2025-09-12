@@ -14,6 +14,7 @@ if (!$userObj->isLoggedIn()) {
     <title>Writer Dashboard - School Publication</title>
 
     <link href="../core/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body class="font-sans bg-gray-50 min-h-screen">
@@ -53,7 +54,7 @@ if (!$userObj->isLoggedIn()) {
                     <div>
                         <button type="submit" name="insertArticleBtn"
                             class="w-full py-2 bg-green-600 rounded-lg hover:bg-green-700 text-white font-semibold transition cursor-pointer">
-                            Submit Article
+                            <i class="fa-solid fa-arrow-up-from-bracket"></i> Submit Article
                         </button>
                     </div>
                 </form>

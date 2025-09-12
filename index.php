@@ -11,6 +11,7 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
     <title>Homepage - School Publication</title>
 
     <link href="core/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 
@@ -18,7 +19,9 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
     <?php include 'components/navbar.php'; ?>
 
     <div class="max-w-7xl mx-auto px-4">
-        <h1 class="m-1 p-3 text-4xl font-bold text-center">Recent Articles</h1>
+        <h1 class="m-1 p-3 text-4xl font-bold text-center">
+            <i class="fa-solid fa-newspaper"></i> Recent Articles
+        </h1>
 
         <div class="flex justify-center">
             <div class="w-full md:w-2/3">
@@ -83,7 +86,9 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="p-6 bg-white rounded-lg shadow">
-                    <h3 class="mb-4 text-2xl font-semibold text-center">Writer</h3>
+                    <h3 class="mb-4 text-2xl font-semibold text-center">
+                        <i class="fa-solid fa-pencil"></i> Writer
+                    </h3>
                     <img
                         src="https://images.unsplash.com/photo-1577900258307-26411733b430?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         class="mb-4 w-full h-64 rounded-md object-cover">
@@ -95,7 +100,9 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
                 </div>
 
                 <div class="p-6 bg-white rounded-lg shadow">
-                    <h3 class="mb-4 text-2xl font-semibold text-center">Admin</h3>
+                    <h3 class="mb-4 text-2xl font-semibold text-center">
+                        <i class="fa-solid fa-user-tie"></i> Admin
+                    </h3>
                     <img
                         src="https://plus.unsplash.com/premium_photo-1661582394864-ebf82b779eb0?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         class="mb-4 w-full h-64 rounded-md object-cover">
@@ -118,12 +125,12 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
             <button
                 onclick="window.location.href='register.php'"
                 class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition cursor-pointer">
-                Register
+                <i class="fa-solid fa-user-plus"></i> Register
             </button>
             <button
                 onclick="window.location.href='login.php'"
                 class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition cursor-pointer">
-                Log In
+                <i class="fa-solid fa-door-open"></i> Log In
             </button>
         </div>
 

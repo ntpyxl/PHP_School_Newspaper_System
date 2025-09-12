@@ -18,6 +18,7 @@ if (!$userObj->isAdmin()) {
     <title>Review Articles - School Publication</title>
 
     <link href="../core/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 
@@ -91,7 +92,7 @@ if (!$userObj->isAdmin()) {
                                     data-article-content="<?php echo $article['content']; ?>"
                                     data-return-to="review_articles"
                                     class="editArticleButton px-3 py-1 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">
-                                    Edit
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
                                 </button>
 
                                 <button
@@ -100,7 +101,7 @@ if (!$userObj->isAdmin()) {
                                     data-article-owner="<?php echo $article['author_id']; ?>"
                                     data-delete-by-admin="true"
                                     class="deleteArticleButton px-3 py-1 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer">
-                                    Delete
+                                    <i class="fa-solid fa-trash"></i> Delete
                                 </button>
                             <?php } ?>
                         </div>

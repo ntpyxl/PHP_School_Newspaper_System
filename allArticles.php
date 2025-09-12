@@ -11,6 +11,7 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
     <title>Articles - School Publication</title>
 
     <link href="core/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 
@@ -18,7 +19,9 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
     <?php include 'components/navbar.php'; ?>
 
     <div class="max-w-7xl mx-auto px-4">
-        <h1 class="m-1 p-3 text-4xl font-bold text-center">Articles</h1>
+        <h1 class="m-1 p-3 text-4xl font-bold text-center">
+            <i class="fa-solid fa-newspaper"></i> Articles
+        </h1>
 
         <div class="flex justify-center">
             <div class="w-full md:w-2/3">
@@ -91,12 +94,12 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
             <button
                 onclick="window.location.href='register.php'"
                 class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition cursor-pointer">
-                Register
+                <i class="fa-solid fa-user-plus"></i> Register
             </button>
             <button
                 onclick="window.location.href='login.php'"
                 class="px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition cursor-pointer">
-                Log In
+                <i class="fa-solid fa-door-open"></i> Log In
             </button>
         </div>
 

@@ -7,6 +7,7 @@
     <title>Register - School Publication</title>
 
     <link href="core/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body class="min-h-screen bg-cover bg-center bg-no-repeat"
@@ -68,8 +69,11 @@
                 </div>
 
                 <div class="pt-4">
-                    <input type="submit" id="insertNewUserBtn" name="insertNewUserBtn" value="Register"
-                        class="w-full py-2 bg-green-600 rounded-lg text-white font-semibold hover:bg-green-700 transition cursor-pointer">
+                    <button type="submit" id="insertNewUserBtn" name="insertNewUserBtn"
+                        class="w-full py-2 bg-green-600 rounded-lg text-white font-semibold hover:bg-green-700 transition cursor-pointer flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-plus"></i>
+                        Register
+                    </button>
                 </div>
             </form>
         </div>

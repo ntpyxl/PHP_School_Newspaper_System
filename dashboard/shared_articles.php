@@ -14,6 +14,7 @@ if (!$userObj->isLoggedIn()) {
     <title>Shared Articles - School Publication</title>
 
     <link href="../core/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 
@@ -33,7 +34,9 @@ if (!$userObj->isLoggedIn()) {
 
             <div class="md:col-span-3 grid grid-cols-2 gap-8">
                 <div class="col-span-1">
-                    <h3 class="pb-3 text-2xl font-semibold text-center">Share Requests</h3>
+                    <h3 class="pb-3 text-2xl font-semibold text-center">
+                        <i class="fa-solid fa-share-from-square"></i> Share Requests
+                    </h3>
 
                     <div class="space-y-6">
                         <?php
@@ -93,7 +96,9 @@ if (!$userObj->isLoggedIn()) {
                 </div>
 
                 <div class="col-span-1">
-                    <h3 class="pb-3 text-2xl font-semibold text-center">Shared To You</h3>
+                    <h3 class="pb-3 text-2xl font-semibold text-center">
+                        <i class="fa-solid fa-users"></i> Shared To You
+                    </h3>
 
                     <div class="space-y-6">
                         <?php
@@ -145,7 +150,7 @@ if (!$userObj->isLoggedIn()) {
                                     data-article-content="<?php echo $article['content']; ?>"
                                     data-return-to="shared_articles"
                                     class="editArticleButton mt-3 px-3 py-1 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">
-                                    Edit
+                                    <i class="fa-solid fa-pen-to-square"></i> Edit
                                 </button>
                             </div>
                         <?php } ?>

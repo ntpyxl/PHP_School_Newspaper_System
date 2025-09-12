@@ -9,7 +9,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
            <?php echo $currentPage === "index.php"
                 ? 'border border-teal-600 bg-white text-teal-600 hover:bg-teal-50'
                 : 'border border-white bg-teal-600 text-white hover:bg-teal-700'; ?>">
-        Dashboard
+        <i class="fa-solid fa-pen-nib"></i> Dashboard
     </button>
 
     <button
@@ -18,7 +18,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
            <?php echo $currentPage === "published_articles.php"
                 ? 'border border-indigo-600 bg-white text-indigo-600 hover:bg-indigo-50'
                 : 'border border-white bg-indigo-600 text-white hover:bg-indigo-700'; ?>">
-        My Articles
+        <i class="fa-solid fa-newspaper"></i> My Articles
     </button>
 
     <button
@@ -27,7 +27,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
            <?php echo $currentPage === "shared_articles.php"
                 ? 'border border-indigo-600 bg-white text-indigo-600 hover:bg-indigo-50'
                 : 'border border-white bg-indigo-600 text-white hover:bg-indigo-700'; ?>">
-        Articles Shared to Me
+        <i class="fa-solid fa-share-from-square"></i> Articles Shared to Me
     </button>
 
     <?php if ($userObj->isAdmin()) { ?>
@@ -37,19 +37,22 @@ $currentPage = basename($_SERVER['PHP_SELF']);
            <?php echo $currentPage === "review_articles.php"
                 ? 'border border-amber-600 bg-white text-amber-600 hover:bg-amber-50'
                 : 'border border-white bg-amber-600 text-white hover:bg-amber-700'; ?>">
-            Review Articles
+            <i class="fa-solid fa-magnifying-glass"></i> Review Articles
         </button>
     <?php } ?>
 
     <button
         onclick="window.location.href='../core/handler.php?logoutUserBtn=1'"
         class="w-full py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition cursor-pointer">
-        Logout
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
     </button>
 </div>
 
 <div>
-    <h3 class="pb-3 text-2xl font-semibold text-center">Article Notifications</h3>
+    <h3 class="pb-3 text-2xl font-semibold text-center">
+        <i class="fa-solid fa-bell"></i> Article Notifications
+    </h3>
+
     <div class="space-y-3">
         <?php
         $notifications = $notificationObj->getRecentUserNotifications($_SESSION['user_id']);
