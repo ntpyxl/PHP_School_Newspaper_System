@@ -29,13 +29,15 @@ if ($currentDir === "src" && $currentFile === "index.php") {
         <div class="hidden lg:flex space-x-6" id="menu">
             <a
                 href="<?php echo BASE_URL; ?>index.php"
-                class="text-white hover:underline underline-offset-4">
+                class="text-white hover:underline underline-offset-4 
+                        <?php echo ($currentDir === 'src' && $currentFile === 'index.php') ? 'underline' : ''; ?>">
                 Home
             </a>
 
             <a
                 href="<?php echo BASE_URL; ?>allArticles.php"
-                class="text-white hover:underline underline-offset-4">
+                class="text-white hover:underline underline-offset-4
+                        <?php echo ($currentDir === 'src' && $currentFile === 'allArticles.php') ? 'underline' : ''; ?>">
                 Articles
             </a>
 
@@ -47,8 +49,9 @@ if ($currentDir === "src" && $currentFile === "index.php") {
 
             <a
                 href="<?php echo BASE_URL; ?>dashboard/"
-                class="text-white hover:underline underline-offset-4">
-                Publish
+                class="text-white hover:underline underline-offset-4
+                        <?php echo ($currentDir === 'dashboard') ? 'underline' : ''; ?>">
+                Dashboard
             </a>
         </div>
     </div>
