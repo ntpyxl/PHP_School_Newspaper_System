@@ -107,6 +107,7 @@ if (!$userObj->isLoggedIn()) {
                         ?>
                             <div
                                 data-article-title="<?php echo $article['title']; ?>"
+                                data-article-image-url="<?php echo $article['image_url']; ?>"
                                 data-article-content="<?php echo $article['content']; ?>"
                                 data-author-username="<?php echo $article['author_username']; ?>"
                                 data-is-admin="<?php echo $article['author_is_admin']; ?>"

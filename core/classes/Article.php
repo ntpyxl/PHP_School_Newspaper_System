@@ -131,10 +131,10 @@ class Article extends Database
      * @param string $content The new content.
      * @return int The number of affected rows.
      */
-    public function updateArticle($id, $title, $content)
+    public function updateArticle($id, $title, $image_url, $content)
     {
-        $sql = "UPDATE articles SET title = ?, content = ? WHERE article_id = ?";
-        return $this->executeNonQuery($sql, [$title, $content, $id]);
+        $sql = "UPDATE articles SET title = ?, image_url = ?, content = ? WHERE article_id = ?";
+        return $this->executeNonQuery($sql, [$title, $image_url, $content, $id]);
     }
 
     /**

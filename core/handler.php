@@ -81,12 +81,13 @@ if (isset($_POST['insertArticleBtn'])) {
 
 if (isset($_POST['editArticleBtn'])) {
     $title = $_POST['title'];
+    $image_url = $_POST['image'];
     $content = $_POST['content'];
     $article_id = $_POST['article_id'];
     $return_to = $_POST['return_to'] ?? '';
 
 
-    if ($articleObj->updateArticle($article_id, $title, $content)) {
+    if ($articleObj->updateArticle($article_id, $title, $image_url, $content)) {
         if ($return_to === '') {
             header("Location: ../dashboard/");
         } else {
