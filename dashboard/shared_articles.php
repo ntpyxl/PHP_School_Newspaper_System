@@ -116,17 +116,17 @@ if (!$userObj->isLoggedIn()) {
                                 <h2 class="text-xl font-semibold"><?php echo $article['title']; ?></h2>
 
                                 <p class="block text-gray-600 text-sm">
-                                    Requested by
+                                    Published by
 
-                                    <?php if ($article['requester_is_admin'] == 1) { ?>
+                                    <?php if ($article['author_is_admin'] == 1) { ?>
                                         <span class="px-1 rounded-md bg-blue-600 text-white text-xs">Admin</span>
-                                    <?php } elseif ($article['requester_is_admin'] == 0) { ?>
+                                    <?php } elseif ($article['author_is_admin'] == 0) { ?>
                                         <span class="px-1 rounded-md bg-green-600 text-white text-xs">Writer</span>
                                     <?php } ?>
 
-                                    <span class="font-bold"><?php echo $article['requester_username'] ?></span>
+                                    <span class="font-bold"><?php echo $article['author_username'] ?></span>
 
-                                    on <?php echo date("F j, Y g:i A", strtotime($article['requested_at'])); ?>
+                                    on <?php echo date("F j, Y g:i A", strtotime($article['created_at'])); ?>
                                 </p>
 
                                 <?php
@@ -147,6 +147,7 @@ if (!$userObj->isLoggedIn()) {
                                 <button
                                     data-article-id="<?php echo $article['article_id']; ?>"
                                     data-article-title="<?php echo $article['title']; ?>"
+                                    data-article-image-url="<?php echo $article['image_url']; ?>"
                                     data-article-content="<?php echo $article['content']; ?>"
                                     data-return-to="shared_articles"
                                     class="editArticleButton mt-3 px-3 py-1 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition cursor-pointer">
