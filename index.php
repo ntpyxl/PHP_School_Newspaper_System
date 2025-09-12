@@ -48,7 +48,13 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
                         </p>
 
                         <?php list($previewContent, $fullContent) = limit_words($article['content']); ?>
-                        <div class="article-preview space-y-2">
+                        <div class="mt-5 article-preview space-y-2">
+                            <img
+                                id="readModalImage"
+                                src="<?php echo $article['image_url'] ?>"
+                                class="max-w-full rounded-lg"
+                                alt="Article image">
+
                             <p class="text-gray-700 whitespace-pre-line short-content">
                                 <?php echo $previewContent; ?>
                             </p>
