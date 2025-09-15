@@ -30,7 +30,12 @@ require_once __DIR__ . "/core/helperFunctions.php"; ?>
                 foreach ($articles as $article) { ?>
                     <div class="my-3 p-5 rounded-lg bg-white shadow">
                         <div class="flex justify-between items-center">
-                            <h2 class="mb-2 text-2xl font-bold"><?php echo $article['title']; ?></h2>
+                            <h2 class="text-xl font-semibold flex items-center space-x-2">
+                                <span class="px-2 py-0.5 text-xs font-medium text-indigo-700 bg-indigo-100 rounded">
+                                    <?php echo $article['category_name']; ?>
+                                </span>
+                                <span><?php echo $article['title']; ?></span>
+                            </h2>
 
                             <?php
                             $isLoggedIn = $userObj->isLoggedIn();

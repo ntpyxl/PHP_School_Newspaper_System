@@ -10,6 +10,7 @@ CREATE TABLE school_publication_users (
 CREATE TABLE articles (
     article_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
+    category_id INT NOT NULL DEFAULT '0',
     image_url TEXT,
     content TEXT NOT NULL,
     author_id INT NOT NULL,
@@ -24,7 +25,7 @@ CREATE TABLE shared_articles (
     requested_by INT NOT NULL,
     status ENUM('pending', 'accepted', 'rejected') NOT NULL DEFAULT 'pending',
     requested_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
 
 CREATE TABLE article_notifications (
     notification_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,4 +35,9 @@ CREATE TABLE article_notifications (
     content TEXT NOT NULL,
     user_id INT NOT NULL,
     notified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-)
+);
+
+CREATE TABLE article_category (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(128)
+);

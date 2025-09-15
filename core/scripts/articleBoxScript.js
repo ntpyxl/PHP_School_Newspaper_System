@@ -1,5 +1,6 @@
 $('.articleCard').on('click', function(event) {
     let title = $(this).data("article-title");
+    let category = $(this).data("article-category-name");
     let image = $(this).data("article-image-url");
     let content = $(this).data("article-content");
     let username = $(this).data("author-username");
@@ -7,6 +8,7 @@ $('.articleCard').on('click', function(event) {
     let createdAt = $(this).data("created-at");
 
     $("#readModalTitle").text(title);
+    $("#readModalCategory").text(category);
     $("#readModalContent").text(content);
     $("#readModalUsername").text(username);
     $("#readModalCreatedAt").text(createdAt);
@@ -38,12 +40,14 @@ $('.editArticleButton').on('click', function(event) {
 
     let id = $(this).data("article-id");
     let title = $(this).data("article-title");
+    let category = $(this).data("article-category-id");
     let image = $(this).data("article-image-url");
     let content = $(this).data("article-content");
     let return_to = $(this).data("return-to");
 
     $("#updateModalArticleId").val(id);
     $("#updateModalTitle").val(title);
+    $("#updateModalCategory").val(category);
     $("#updateModalImage").val(image);
     $("#updateModalContent").text(content);
     $("#updateModalRedir").val(return_to);

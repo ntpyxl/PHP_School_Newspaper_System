@@ -1,3 +1,7 @@
+$('.selectArticleStatus').on('click', function(event){
+    event.stopPropagation();
+})
+
 $('.selectArticleStatus').on('change', function(event){
     event.preventDefault();
 

@@ -39,6 +39,7 @@ if (!$userObj->isLoggedIn()) {
                 ?>
                     <div
                         data-article-title="<?php echo $article['title']; ?>"
+                        data-article-category-name="<?php echo $article['category_name']; ?>"
                         data-article-image-url="<?php echo $article['image_url']; ?>"
                         data-article-content="<?php echo $article['content']; ?>"
                         data-author-username="<?php echo $article['username']; ?>"
@@ -46,7 +47,12 @@ if (!$userObj->isLoggedIn()) {
                         data-created-at="<?php echo date("F j, Y g:i A", strtotime($article['created_at'])); ?>"
                         class="bg-white shadow-md rounded-lg p-6 articleCard cursor-pointer">
 
-                        <h2 class="text-xl font-semibold"><?php echo $article['title']; ?></h2>
+                        <h2 class="text-xl font-semibold flex items-center space-x-2">
+                            <span class="px-2 py-0.5 text-xs font-medium text-indigo-700 bg-indigo-100 rounded">
+                                <?php echo $article['category_name']; ?>
+                            </span>
+                            <span><?php echo $article['title']; ?></span>
+                        </h2>
 
                         <p class="block text-gray-600 text-sm">
                             Published by
@@ -81,6 +87,7 @@ if (!$userObj->isLoggedIn()) {
                             <button
                                 data-article-id="<?php echo $article['article_id']; ?>"
                                 data-article-title="<?php echo $article['title']; ?>"
+                                data-article-category-id="<?php echo $article['category_id']; ?>"
                                 data-article-image-url="<?php echo $article['image_url']; ?>"
                                 data-article-content="<?php echo $article['content']; ?>"
                                 data-return-to="published_articles"

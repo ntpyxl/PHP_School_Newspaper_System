@@ -13,15 +13,16 @@ class Article extends Database
     /**
      * Creates a new article.
      * @param string $title The article title.
+     * @param int $category The ID of the article's category.
      * @param string $content The article content.
      * @param string $image The article image.
      * @param int $author_id The ID of the author.
      * @return int The ID of the newly created article.
      */
-    public function createArticle($title, $image, $content, $author_id)
+    public function createArticle($title, $category, $image, $content, $author_id)
     {
-        $sql = "INSERT INTO articles (title, image_url, content, author_id) VALUES (?, ?, ?, ?)";
-        return $this->executeNonQuery($sql, [$title, $image, $content, $author_id]);
+        $sql = "INSERT INTO articles (title, category_id, image_url, content, author_id) VALUES (?, ?, ?, ?, ?)";
+        return $this->executeNonQuery($sql, [$title, $category, $image, $content, $author_id]);
     }
 
     /**
@@ -38,6 +39,8 @@ class Article extends Database
         $sql = "SELECT
                 articles.article_id,
                 articles.title,
+                articles.category_id,
+                article_category.category_name,
                 articles.image_url,
                 articles.content,
                 articles.author_id,
@@ -47,7 +50,9 @@ class Article extends Database
                 articles.created_at
                 FROM articles 
                 JOIN school_publication_users ON 
-                articles.author_id = school_publication_users.user_id 
+                articles.author_id = school_publication_users.user_id
+                JOIN article_category ON
+                articles.category_id = article_category.category_id
                 ORDER BY articles.created_at DESC";
 
         return $this->executeQuery($sql);
@@ -62,6 +67,8 @@ class Article extends Database
         $sql = "SELECT
                 articles.article_id,
                 articles.title,
+                articles.category_id,
+                article_category.category_name,
                 articles.image_url,
                 articles.content,
                 articles.author_id,
@@ -71,7 +78,9 @@ class Article extends Database
                 articles.created_at
                 FROM articles 
                 JOIN school_publication_users ON 
-                articles.author_id = school_publication_users.user_id 
+                articles.author_id = school_publication_users.user_id
+                JOIN article_category ON
+                articles.category_id = article_category.category_id
                 WHERE status IN ('active', 'inactive') ORDER BY articles.created_at DESC";
 
         return $this->executeQuery($sql);
@@ -86,6 +95,8 @@ class Article extends Database
         $sql = "SELECT
                 articles.article_id,
                 articles.title,
+                articles.category_id,
+                article_category.category_name,
                 articles.image_url,
                 articles.content,
                 articles.author_id,
@@ -95,7 +106,9 @@ class Article extends Database
                 articles.created_at
                 FROM articles 
                 JOIN school_publication_users ON 
-                articles.author_id = school_publication_users.user_id 
+                articles.author_id = school_publication_users.user_id
+                JOIN article_category ON
+                articles.category_id = article_category.category_id
                 WHERE status = 'active' ORDER BY articles.created_at DESC";
 
         return $this->executeQuery($sql);
@@ -110,6 +123,8 @@ class Article extends Database
         $sql = "SELECT 
                 articles.article_id,
                 articles.title,
+                articles.category_id,
+                article_category.category_name,
                 articles.image_url,
                 articles.content,
                 articles.author_id,
@@ -120,6 +135,8 @@ class Article extends Database
                 FROM articles 
                 JOIN school_publication_users ON 
                 articles.author_id = school_publication_users.user_id
+                JOIN article_category ON
+                articles.category_id = article_category.category_id
                 WHERE author_id = ? ORDER BY articles.created_at DESC";
         return $this->executeQuery($sql, [$user_id]);
     }
@@ -128,13 +145,14 @@ class Article extends Database
      * Updates an article.
      * @param int $id The article ID to update.
      * @param string $title The new title.
+     * @param int $category The ID of the article's category.
      * @param string $content The new content.
      * @return int The number of affected rows.
      */
-    public function updateArticle($id, $title, $image_url, $content)
+    public function updateArticle($id, $title, $category, $image_url, $content)
     {
-        $sql = "UPDATE articles SET title = ?, image_url = ?, content = ? WHERE article_id = ?";
-        return $this->executeNonQuery($sql, [$title, $image_url, $content, $id]);
+        $sql = "UPDATE articles SET title = ?, category_id = ?, image_url = ?, content = ? WHERE article_id = ?";
+        return $this->executeNonQuery($sql, [$title, $category, $image_url, $content, $id]);
     }
 
     /**
@@ -177,6 +195,8 @@ class Article extends Database
                     sa.share_id,
                     a.article_id,
                     a.title,
+                    a.category_id,
+                    ac.category_name,
                     a.image_url,
                     a.content,
                     a.author_id,
@@ -192,6 +212,8 @@ class Article extends Database
                 FROM shared_articles sa
                 JOIN articles a 
                     ON a.article_id = sa.article_id
+                JOIN article_category ac
+                    ON a.category_id = ac.category_id
                 JOIN school_publication_users au 
                     ON a.author_id = au.user_id
                 JOIN school_publication_users ru 
@@ -233,6 +255,8 @@ class Article extends Database
                     sa.share_id,
                     a.article_id,
                     a.title,
+                    a.category_id,
+                    ac.category_name,
                     a.image_url,
                     a.content,
                     a.author_id,
@@ -248,6 +272,8 @@ class Article extends Database
                 FROM shared_articles sa
                 JOIN articles a 
                     ON a.article_id = sa.article_id
+                JOIN article_category ac
+                    ON a.category_id = ac.category_id
                 JOIN school_publication_users au 
                     ON a.author_id = au.user_id
                 JOIN school_publication_users ru 
@@ -267,5 +293,23 @@ class Article extends Database
     {
         $sql = "DELETE FROM articles WHERE article_id = ?";
         return $this->executeNonQuery($sql, [$id]);
+    }
+
+    public function addCategory($category)
+    {
+        $sql = "INSERT INTO article_category (category_name) VALUES (?)";
+        return $this->executeNonQuery($sql, [$category]);
+    }
+
+    public function getCategories()
+    {
+        $sql = "SELECT * FROM article_category";
+        return $this->executeQuery($sql);
+    }
+
+    public function getCategoryByID($id)
+    {
+        $sql = "SELECT * FROM article_category WHERE category_id = ?";
+        return $this->executeQuery($sql, [$id]);
     }
 }

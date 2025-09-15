@@ -2,9 +2,14 @@
     <div class="w-full max-w-4xl px-6 py-2 bg-white rounded-lg shadow-lg">
 
         <div class="flex pb-2 justify-between items-center">
-            <h3 id="readModalTitle" class="text-2xl font-bold"></h3>
+            <div class="flex items-center space-x-2">
+                <span id="readModalCategory" class="px-2 py-0.5 text-xs font-medium text-indigo-700 bg-indigo-100 rounded"></span>
+                <h3 id="readModalTitle" class="text-2xl font-bold"></h3>
+            </div>
+
             <button id="closeReadModalButton" class="text-4xl text-gray-600 hover:text-gray-900 cursor-pointer">&times;</button>
         </div>
+
 
         <div class="space-y-2">
             <p class="text-gray-600 text-sm">

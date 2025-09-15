@@ -7,11 +7,35 @@
         </div>
 
         <form action="../core/handler.php" method="POST" class="space-y-4">
-            <div>
-                <input type="text" name="title" id="updateModalTitle"
-                    class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
-                    placeholder="Article Title">
+            <div class="flex flex-row items-end space-x-3">
+                <div class="flex-2">
+                    <input
+                        type="text"
+                        name="title"
+                        id="updateModalTitle"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                        placeholder="Article Title">
+                </div>
+
+                <div class="flex-1">
+                    <select
+                        name="category"
+                        id="updateModalCategory"
+                        class="w-full border rounded-lg px-3 py-2 h-10 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <?php
+                        $categories = $articleObj->getCategories();
+                        foreach ($categories as $category) {
+                        ?>
+                            <option value="<?php echo $category['category_id']; ?>">
+                                <?php echo $category['category_name']; ?>
+                            </option>
+                        <?php
+                        }
+                        ?>
+                    </select>
+                </div>
             </div>
+
 
             <div>
                 <input type="text" name="image" id="updateModalImage"

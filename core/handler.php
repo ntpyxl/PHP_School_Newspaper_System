@@ -69,11 +69,12 @@ if (isset($_GET['logoutUserBtn'])) {
 
 if (isset($_POST['insertArticleBtn'])) {
     $title = $_POST['title'];
+    $category = $_POST['category'];
     $image = $_POST['image'];
     $description = $_POST['description'];
     $author_id = $_SESSION['user_id'];
 
-    if ($articleObj->createArticle($title, $image, $description, $author_id)) {
+    if ($articleObj->createArticle($title, $category, $image, $description, $author_id)) {
         header("Location: ../dashboard/");
         exit;
     }
@@ -81,13 +82,14 @@ if (isset($_POST['insertArticleBtn'])) {
 
 if (isset($_POST['editArticleBtn'])) {
     $title = $_POST['title'];
+    $category = $_POST['category'];
     $image_url = $_POST['image'];
     $content = $_POST['content'];
     $article_id = $_POST['article_id'];
     $return_to = $_POST['return_to'] ?? '';
 
 
-    if ($articleObj->updateArticle($article_id, $title, $image_url, $content)) {
+    if ($articleObj->updateArticle($article_id, $title, $category, $image_url, $content)) {
         if ($return_to === '') {
             header("Location: ../dashboard/");
         } else {
@@ -134,7 +136,7 @@ if (isset($_POST['requestShareArticle'])) {
     $article_id = $_POST['article_id'];
     $requested_by = $_POST['requested_by'];
 
-    echo ($articleObj->requestAccess($article_id, $requested_by));
+    echo $articleObj->requestAccess($article_id, $requested_by);
 }
 
 if (isset($_POST['editShareStatusRequest'])) {
@@ -142,4 +144,15 @@ if (isset($_POST['editShareStatusRequest'])) {
     $share_status = $_POST['share_status'];
 
     echo $articleObj->updateShareStatus($share_id, $share_status);
+}
+
+
+
+if (isset($_POST['insertCategoryBtn'])) {
+    $category = $_POST['category'];
+
+    if ($articleObj->addCategory($category)) {
+        header("Location: ../dashboard/manage_categories.php");
+        exit;
+    }
 }

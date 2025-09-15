@@ -33,10 +33,34 @@ if (!$userObj->isLoggedIn()) {
 
             <div class="md:col-span-3 space-y-6">
                 <form action="../core/handler.php" method="POST" class="bg-white shadow-md rounded-lg p-6 space-y-4">
-                    <div>
-                        <label for="title" class="block text-sm font-medium text-gray-700">Article Title</label>
-                        <input type="text" name="title" placeholder="Your Title Here" required
-                            class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <div class="flex flex-row space-x-3">
+                        <div class="flex-2">
+                            <label for="title" class="block text-sm font-medium text-gray-700">Article Title</label>
+                            <input
+                                type="text"
+                                name="title"
+                                placeholder="Your Title Here"
+                                required
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 h-10 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+
+                        <div class="flex-1">
+                            <label for="category" class="block text-sm font-medium text-gray-700">Category Name</label>
+                            <select
+                                name="category"
+                                class="w-full border border-gray-300 rounded-lg px-3 py-2 h-10 focus:outline-none focus:ring-2 focus:ring-green-500">
+                                <?php
+                                $categories = $articleObj->getCategories();
+                                foreach ($categories as $category) {
+                                ?>
+                                    <option value="<?php echo $category['category_id']; ?>">
+                                        <?php echo $category['category_name']; ?>
+                                    </option>
+                                <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
                     </div>
 
                     <div>

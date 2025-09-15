@@ -39,6 +39,15 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 : 'border border-white bg-amber-600 text-white hover:bg-amber-700'; ?>">
             <i class="fa-solid fa-magnifying-glass"></i> Review Articles
         </button>
+
+        <button
+            onclick="window.location.href='manage_categories.php'"
+            class="w-full py-2 rounded-lg transition cursor-pointer
+           <?php echo $currentPage === "manage_categories.php"
+                ? 'border border-amber-600 bg-white text-amber-600 hover:bg-amber-50'
+                : 'border border-white bg-amber-600 text-white hover:bg-amber-700'; ?>">
+            <i class="fa-solid fa-folder"></i> Manage Categories
+        </button>
     <?php } ?>
 
     <button
